@@ -9,7 +9,7 @@ from tensorflow.keras.layers import Dense, Activation, Dropout
 from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.metrics import classification_report, confusion_matrix
 
-dataframe = pd.read_excel("maliciousornot.xlsx")
+dataframe = pd.read_excel("datasets/maliciousornot.xlsx")
 print(dataframe.info())
 print(dataframe.describe())
 print(dataframe.corr()["Type"].sort_values())
@@ -55,7 +55,7 @@ plt.title("Loss")
 model_loss.plot()
 plt.show()
 
-preds = model.predict_classes(X_test)
+preds = model.predict(X_test).astype("int32")
 print("classification report\n", classification_report(y_test, preds))
 
 print("confusion matrix\n", confusion_matrix(y_test, preds))
